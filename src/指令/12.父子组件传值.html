@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id='app'>
+         <!-- 驼峰写法 需要 字母间加上- ，要么不使用驼峰 如cmessage, -->
+          <cnp v-bind:c-Movies="movies" :cmessage="message"></cnp>
+     </div>
+
+     <template id="cp">
+   <div>
+     <ul v-for="item in cMovies">
+         <li>{{item}}</li>
+     </ul>
+     <hr>
+     {{cmessage}}
+   </div>
+
+     </template>
+
+     <script src='../../lib/vue.js'></script>
+     <script>
+  
+        const cnp =Vue.extend({
+            template:`#cp`,
+            // props:['cmovies','cmessage'],  // 属性传值
+            props:{
+                cMovies:{
+                    type:Array,
+                    default:function(){
+                        return []
+                    },
+                    required:true
+                },
+                cmessage:{
+                    type:String,
+                    default:"默认值"
+                }
+            },
+            data(){
+                return {}
+            }
+        })
+
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: 'Hello world',
+                 movies:['海王','海贼王','海的女儿','海精灵']
+    
+             },
+             methods: {},
+             computed: {},
+             components:{
+                 cnp,
+             }
+         });
+    </script>
+</body>
+</html>

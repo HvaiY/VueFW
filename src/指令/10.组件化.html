@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+</head>
+<body>
+     <div id='app'>
+         <my-cmp></my-cmp>
+         <cpn></cpn>
+         <hr>
+         <cmpc></cmpc>
+         <hr>
+         <yft></yft>
+         <hr>
+         <clmb></clmb>
+     </div>
+
+
+     <!-- 模板抽离 -->
+     <template id="clMb">
+     <div>
+    <h2>抽离的模板 组件标题</h2>
+       <p>组件内容</p> 
+       </div> 
+     </template>
+     <script src='../../lib/vue.js'></script>
+     <script>
+    // 创建组件
+      const cmp=Vue.extend({
+          template:`
+          <div>
+          <h2>组件标题</h2>
+          <p>组件内容</p>
+          </div>
+          `
+      });
+      // 注册组件
+      Vue.component('my-cmp',cmp);
+
+      // 使用组件 在页面中 也可以组件里面 (套娃)
+const cmpChild=Vue.extend({
+          template:`
+          <div>
+          <h2>组件标题</h2>
+          <p>组件内容child</p>
+          </div>
+          `
+      });
+
+      const cmpC=Vue.extend({
+          template:`
+          <div>
+          <h2>组件标题</h2>
+          <p>组件内容父组件</p>
+          <cc></cc>
+          </div>
+          `,
+          components:{
+              cc:cmpChild
+          }
+      });
+
+      
+        
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: 'Hello world',
+    
+             },
+             methods: {},
+             computed: {},
+             components:{
+                 cpn:cmp,
+                 cmpc:cmpC,
+                 yft:{template:`<div>
+          <h2>组件标题 语法糖</h2>
+          <p>组件内容父组件</p> 
+          </div>`},
+          clmb:{template:'#clMb'}
+             }
+         });
+    </script>
+</body>
+</html>

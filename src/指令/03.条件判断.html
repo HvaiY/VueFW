@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!--  vue 内部虚拟DOM 重用了未改变的元素 如果不加key 文本框中的值会给到下一个文本框 -->
+        <span v-if="isUser">
+            <label for="userName">用户账号</label>
+            <input type="text" id="userName" placeholder="用户账号" key='userName'>
+        </span>
+        <span v-else>
+            <label for="email">用户邮箱</label>
+            <input type="text" id="email" placeholder="用户邮箱" key="email">
+        </span>
+
+        <br>
+        <!-- 切换频率较高的情况下 选择v-show -->
+        <span v-show="isUser">
+            <label for="userName">用户账号</label>
+            <input type="text" id="userName" placeholder="用户账号" key='userName'>
+        </span>
+        <span v-show="!isUser">
+            <label for="email">用户邮箱</label>
+            <input type="text" id="email" placeholder="用户邮箱" key="email">
+        </span>
+        <button @click="isUser=!isUser">切换</button>
+    </div>
+    <script src='../../lib/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello world',
+                isUser: true,
+            },
+            methods: {
+                btnClick() {
+
+                }
+            },
+            computed: {}
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-color: beige;
+            padding: 5px;
+            margin: 2px;
+        }
+        thead{
+            background-color:darkkhaki;
+        }
+        td{
+            border:1px solid cadetblue ;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+<body>
+     <div id='app'>
+         <table>
+             <thead>
+                 <td>名称</td>
+                 <td>价格</td>
+                 <td>数量</td>
+                 <td>操作</td>
+             </thead>
+             <tbody>
+                 <tr v-for="(item,index) in orders">
+                     <td>{{item.name}}</td>
+                     <td>{{item.price|priceMessage}}</td>
+                     <td>
+                         <button @click="decrement(index)" v-bind:disabled="item.number<=1">-</button>
+                         {{item.number}}
+                         <button @click="increment(index)">+</button>
+                     </td>
+                     <td><button @click="remove(index)">移除</button></td>
+                 </tr>
+             </tbody>
+         </table>
+         <h2>总价格：{{totalFee | priceMessage}}</h2>
+     </div>
+     <script src='../../lib/vue.js'></script>
+     <script>
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: 'Hello world',
+                 orders:[{
+                  name:'C#入门到放弃',
+                  price:125,
+                  number:1
+                 },
+                {
+                  name:'Jvm性能调优',
+                  price:115,
+                  number:1
+                 },
+                {
+                  name:'python 清醒到迷茫',
+                  price:105,
+                  number:1
+                 },
+                {
+                  name:'golang 多线程找error',
+                  price:95,
+                  number:1
+                 }, {
+                  name:'vue 简单不简单',
+                  price:95,
+                  number:1
+                 }]
+    
+             },
+             methods: {
+                 remove(index){
+                    this.orders.splice(index,1);
+                     
+                 },
+                 increment(index){
+                  this.orders[index].number++
+                 },
+                 decrement(index){
+                  this.orders[index].number--
+                 }
+             },
+             filters:{
+              priceMessage(price){
+                  return '￥'+price.toFixed(2)
+              }
+
+             },
+             computed: {
+                 totalFee(){
+                     var totalPrice=0;
+                    //  for(let i=0; i<this.orders.length;i++){
+                    //     totalPrice+=this.orders[i].price*this.orders[i].number;
+                    //  }
+
+                   // 方式2
+                    //  for (const item of this.orders) {
+                    //        totalPrice+=item.price*item.number;
+                    //  }
+                    
+                    // 方式3
+                    // for (const item in this.orders) {
+                    //      totalPrice+=this.orders[item].price*this.orders[item].number;
+                    // }
+                    
+                    //reduce  高阶函数 还有 map filter
+                    totalPrice= this.orders.reduce((total,t)=>total+(t.price*t.number),0);
+                     return totalPrice;
+                 }
+             }
+         });
+    </script>
+</body>
+</html>

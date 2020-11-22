@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id='app'>
+         <cpn @fatherclick="cpnClick"></cpn>
+            {{cpmMessage}}
+     </div>
+
+     <template id="mycp">
+        <div> 
+        <input type="text" name="" id="">
+        </div>
+     </template>
+     <script src='../../lib/vue.js'></script>
+     <script>
+const cpn={
+    template:"#mycp",
+    props:{
+         num:0,
+         num2:1
+    },
+    data(){
+        return{
+            categories:[{id:'aaa',name:'电视剧'},{id:'bbb',name:'电影'}]
+        }
+        
+    },
+    methods:{
+        btnClick(item){
+          this.$emit('fatherclick',item);
+        }
+        }
+}
+       // 子组件 的事件触发字组件的方法，该方法使用$emit(方法名，参数) ，发送一个(方法和参数)给注册到组件中，
+       //组件使用时 执行该方法触发父方法 
+       //参数给父组件方法 (那么父组件就获取到了子组件的参数、数据了)
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: 'Hello world',
+                 cpmMessage:''
+    
+             },
+             components:{
+                 cpn
+             },
+             methods: {
+                 cpnClick(item){
+                    this.cpmMessage=item.name;
+                     
+                 }
+             },
+             computed: {}
+         });
+    </script>
+</body>
+</html>

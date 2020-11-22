@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id='app'>
+         <input type="text" v-model="message">
+          <!-- 原理如下输入 -->
+          <input type="text" :value="message" @input="inputChange">
+         {{message}}
+
+         <hr>
+          单选
+         <label for="male">
+             <input type="radio" id ="male" value ="男" v-model="sex">男
+         </label>
+         <label for="frame">
+             <input type="radio" id="frame" value ="女" v-model="sex">女
+         </label>
+         选择了：{{sex}}
+
+         <hr>
+         单选checkbox
+         <label for="agree">
+             <input type="checkbox" id='agree' v-model="isAgree"> 同意协议
+         </label>
+          <h2>你选择了：{{isAgree}}</h2>
+          <button :disabled="!isAgree">下一步</button>
+
+          <hr>
+
+          <input type="checkbox" value="篮球" v-model="hobbies">篮球
+          <input type="checkbox" value="足球" v-model="hobbies">足球
+          <input type="checkbox" value="排球" v-model="hobbies">排球
+          <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+          你爱好 {{hobbies}}
+     </div>
+     <script src='../../lib/vue.js'></script>
+     <script>
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: 'Hello world',
+                 sex:"男",
+                 isAgree:false,
+                 hobbies:[]
+    
+             },
+             methods: {
+                 inputChange(event){
+                   this.message=event.target.value;
+                 }
+             },
+             computed: {}
+         });
+    </script>
+</body>
+</html>

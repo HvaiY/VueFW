@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="btnClick">点击</button>
+      <button @click="btnClick2()">点击2</button>
+      <button @click="btnClick3(params)">点击3</button>
+      <button @click="btnClick4">点击4</button>
+      <button @click="btnClick5">点击5</button>
+      <h3>{{message}}</h3>
+    </div>
+  </body>
+  <script src="../../lib/vue.js"></script>
+  <script>
+    const vue = new Vue({
+      el: "#app",
+      data: {
+        message: "Hello world",
+        params:{code:'123',name:'dahai'}
+      },
+      methods: {
+        btnClick() {
+          console.log(this.message);
+          this.message = "你好，世界！";
+        },
+        btnClick2(params){
+          console.log(params);
+        },
+        btnClick3(params){
+          console.log(params.code)
+        },btnClick4(params){
+          console.log(params);
+        },btnClick5(params){
+          console.log("test");
+        }
+      },
+      completed:{
+        
+      }
+    });
+  </script>
+</html>

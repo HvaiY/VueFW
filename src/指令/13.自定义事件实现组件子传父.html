@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+         <div id='app'>
+             
+         </div>
+
+        <template id="father">
+            <div>
+                <h3>{{info.name}}.{{info.typeCode}}</h3>
+            </div>
+        </template>
+
+
+          <template id="child">
+            <div>
+                 
+            </div>
+        </template>
+
+         <script src='../../lib/vue.js'></script>
+         <script>
+           const child=Vue.entend({
+               template:`#child`,
+               data(){
+                   cinfo:[{name:"jvm调优",typeCode:"java"},
+                   {name:"大话设计模式",typeCode:"C#"},
+                   {name:"",typeCode:"java"},
+                   {name:"jvm调优",typeCode:"java"}]
+               }
+           })
+
+             const app = new Vue({
+                 el: '#app',
+                 data: {
+                     message: 'Hello world',
+        
+                 },
+                 methods: {},
+                 computed: {}
+             });
+        </script>
+</body>
+</html>

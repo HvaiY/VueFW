@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id='app'>
+         <label v-for="item in  allHobbies" :for="item">
+             <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
+         </label>
+
+        <h2>你选择了:{{hobbies}}</h2>
+
+        <hr>
+   <input type="text" name=""  v-model.lazy="inputValue">
+   <h2>{{inputValue}}</h2>
+     <input type="text" name=""  v-model.trim="inputTrim">
+     <h2>{{inputTrim}}</h2>
+       <input type="text" name=""  v-model.number="inputNumber">
+       <h2>{{inputNumber}}</h2>
+  
+     </div>
+     <script src='../../lib/vue.js'></script>
+     <script>
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 allHobbies:['足球','篮球','羽毛球','兵乒球','排球'],
+                 hobbies:[],
+                 inputValue:"",
+                 inputTrim:'',
+                 inputNumber:0
+    
+             },
+             methods: {},
+             computed: {}
+         });
+    </script>
+</body>
+</html>

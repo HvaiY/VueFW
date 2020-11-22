@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id='app'>
+         <cpn></cpn> <cpn></cpn> <cpn></cpn> <cpn></cpn>
+     </div>
+
+
+<template id="cp">
+    <div>   
+    当前计数：{{count}}
+    <br>
+    <button @click="decrement">-</button>{{count}}
+    <button @click="increment">+</button>
+    </div>
+</template>
+
+     <script src='../../lib/vue.js'></script>
+     <script>
+      const cpn=Vue.component('cpn',{
+          template:`#cp`,
+          data(){  //模板中的data 是一个函数 为了组件重用 数据隔离
+              return {
+                  count:0
+              }
+          },
+          methods:{
+              increment(){
+                  this.count++
+              },
+              decrement (){
+                  this.count--
+              }
+          }
+          })
+
+
+         const app = new Vue({
+             el: '#app',
+             data: {
+                 message: 'Hello world',
+                 
+             },
+             methods: {},
+             computed: {}
+         });
+    </script>
+</body>
+</html>

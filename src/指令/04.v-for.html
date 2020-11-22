@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <ul>
+            <li v-for='item in names'>{{item}}</li>
+        </ul>
+        <!-- 获取索引 -->
+        <ul>
+            <li v-for='(item,index) in names'>{{index+1}}.{{item}}</li>
+        </ul>
+
+        <!-- 遍历对象  -->
+        <ul>
+            <li v-for='(value,k,index) in info' :key="index">{{index+1}}.{{k}}-{{value}}</li>
+        </ul>
+    </div>
+    <script src='../../lib/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                names: ['h', 'e', 'l', 'l', 'o'],
+                info: {
+                    name: 'daHai',
+                    age: 18,
+                    height: 180
+                }
+
+            },
+            methods: {},
+            computed: {}
+        });
+
+    </script>
+</body>
+
+</html>
