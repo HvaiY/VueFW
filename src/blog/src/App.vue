@@ -9,7 +9,7 @@
     <router-link to="/about"> 关于</router-link>
     <router-link to="/home" tag="Button" replace>首页 </router-link>
     <router-link to="/about" tag="Button"> 关于</router-link>
-
+    <router-link :to="'/user/'+userName" tag="Button"> 用户</router-link>
     <button @click="homeClick" class="active">触发首页</button>
     <button @click="aboutClick" class="active">触发关于</button>
   </div>
@@ -18,6 +18,11 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      userName:"张飞"
+    }
+  },
   // components: {},
   methods: {
     homeClick() {

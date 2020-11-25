@@ -8,3 +8,6 @@
      - 创建对象(指定路由与组件关系)
      - 导出路由(页面渲染处进行导入使用 这里直接在main.js 中渲染)
  - 默认路由组件 `<router-link>  <router-view>` 属性`this.$router`这个封装了 `history` 可以使用类似于`push ,replace,go`等 
+   - 动态路由 路由地址 分号: 形式 `/user/:userName`  
+     - 使用 `<router-link :to="'/user/'+userName" tag="Button"> 用户</router-link>` userName 绑定的动态数据 可以id 可以时其它
+     - user 组件取值 自动属性中获取 `this.$route.params.userName`
