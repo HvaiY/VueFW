@@ -41,18 +41,30 @@ const routes = [
         component: Messages,
       },
     ],
+    meta: {
+      title: "首页",
+    },
   },
   {
     path: "/about",
     component: About,
+    meta: {
+      title: "关于",
+    },
   },
   {
     path: "/user/:userName",
     component: User,
+    meta: {
+      title: "用户",
+    },
   },
   {
     path: "/profile",
     component: Profile,
+    meta: {
+      title: "档案",
+    },
   },
 ];
 
@@ -61,6 +73,14 @@ const router = new VueRouter({
   routes,
   mode: "history", // 指定模式 路由地址不用hash 显示
   linkActiveClass: "active", // 指定链接 router-link-active 名称 为 active
+});
+
+// 全局守卫  设置 页面的title
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  document.title = to.matched[0].meta.title;
+
+  next();
 });
 
 // 3、将router对象传入到vue实例
