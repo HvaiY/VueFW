@@ -12,6 +12,9 @@
     <router-link :to="'/user/'+userName" tag="Button"> 用户</router-link>
     <button @click="homeClick" class="active">触发首页</button>
     <button @click="aboutClick" class="active">触发关于</button>
+    <!-- id 之外的传参数 query -->
+    <router-link :to="{path:'/profile',query:{name:'dahai',age:18}}">档案</router-link>
+    <button @click="TestClick">测试</button>
   </div>
 </template>
 
@@ -37,6 +40,9 @@ export default {
         console.log(err);
       });
     },
+    TestClick(){
+      console.log(this.name); 
+    }
   },
 };
 </script>
