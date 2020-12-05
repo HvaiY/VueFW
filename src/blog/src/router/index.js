@@ -65,6 +65,9 @@ const routes = [
     meta: {
       title: "档案",
     },
+    beforeEnter: (to, from, next) => {
+      console.log("组件独享守卫");
+    },
   },
 ];
 

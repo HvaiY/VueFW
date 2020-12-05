@@ -1,5 +1,6 @@
+[TOC]
 # blog
-
+- `npm install -g @vue/cli` 之后使用cli 创建项目 `npm create blog`
  - `vue ui ` 可以直接进入vue面板
 
  - `npm install vue-router --save` vue路由
@@ -11,3 +12,5 @@
    - 动态路由 路由地址 分号: 形式 `/user/:userName`  
      - 使用 `<router-link :to="'/user/'+userName" tag="Button"> 用户</router-link>` userName 绑定的动态数据 可以id 可以时其它
      - user 组件取值 自动属性中获取 `this.$route.params.userName`
+   -  守卫 `router.beforeEach((to, from, next) => {}` 路由
+# 守卫
