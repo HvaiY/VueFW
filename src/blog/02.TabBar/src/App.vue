@@ -2,7 +2,7 @@
   <div id="app">
     <router-view></router-view>
     <tab-bar>
-      <tab-bar-item path="/home">
+      <tab-bar-item path="/home" activeColor="blue">
         <img slot="item-icon" src="./assets/img/tabbar/home-1.svg" alt="" />
         <img
           slot="item-icon-active"
@@ -11,8 +11,8 @@
         />
         <div slot="item-text">首页</div>
       </tab-bar-item>
-      <tab-bar-item path="/category">
-        <img slot="item-icon" src="./assets/img/tabbar/category-1.svg" alt="" />
+      <tab-bar-item path="/category" activeColor="deepPink">
+        <img slot="item-icon" src="@/assets/img/tabbar/category-1.svg" alt="" />
         <img
           slot="item-icon-active"
           src="./assets/img/tabbar/category-2.svg"
@@ -20,8 +20,8 @@
         />
         <div slot="item-text">分类</div>
       </tab-bar-item>
-      <tab-bar-item path="/cart">
-        <img slot="item-icon" src="./assets/img/tabbar/gouwu-1.svg" alt="" />
+      <tab-bar-item path="/cart" activeColor="Purple">
+        <img slot="item-icon" src="@/assets/img/tabbar/gouwu-1.svg" alt="" />
         <img
           slot="item-icon-active"
           src="./assets/img/tabbar/gouwu-2.svg"
