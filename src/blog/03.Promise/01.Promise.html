@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="Button" onclick="btn_click()" value="点击我">
+</body>
+
+<script>
+    var isOK = false;
+
+    function btn_click() {
+        isOK = !isOK;
+        console.log(isOK)
+        testPromise();
+    }
+
+    function testPromise() {
+        // 解决异步编程问题 更加优雅
+        new Promise((resolve, reject) => {
+            // resolve 函数的实参数为 then 的形参（传给then）
+            // reject 函数的实参为 catch的形参
+            setTimeout(() => {
+                console.log("请求开始")
+                if (isOK) {
+                    resolve("成功了，我是返回的数据");
+                } else {
+                    reject("失败返回的数据")
+                }
+            }, 1000)
+
+        }).then((data) => {
+            console.log(data)
+            console.log("请求结束")
+        }).catch(error => {
+            console.log(error)
+            console.log("请求结束")
+        });
+    }
+</script>
+
+</html>
