@@ -41,6 +41,27 @@
             console.log(error)
             console.log("请求结束")
         });
+
+        // 写法2   then 里面其实有两个函数 ，一个是满足后调用，一个是失败调用
+        new Promise((resolve, reject) => {
+            // resolve 函数的实参数为 then 的形参（传给then）
+            // reject 函数的实参为 catch的形参
+            setTimeout(() => {
+                console.log("请求开始2")
+                if (isOK) {
+                    resolve("成功了，我是返回的数据2");
+                } else {
+                    reject("失败返回的数据2")
+                }
+            }, 1000)
+
+        }).then((data) => {
+            console.log(data)
+            console.log("请求结束2")
+        }, error => {
+            console.log(error)
+            console.log("请求结束2")
+        });
     }
 </script>
 
