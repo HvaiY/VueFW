@@ -35,7 +35,8 @@
 
 <script>
 import Counter from './components/Counter.vue'
-import store from './store/index.js'
+// import store from './store/index.js'
+import store from './store/index-modules'
 import {INCREMENT,DECREMENT} from './store/mutations-types'
 
 export default {
