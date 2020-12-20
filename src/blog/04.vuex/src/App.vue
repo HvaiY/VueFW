@@ -5,15 +5,30 @@
      
    <input type="button" value="++" @click="increment">
    <input type="button" value="--"  @click="decrement">
+   <input type="button" value="+5"  @click="counterAdd(5)">
+   <input type="button" value="+10"  @click="counterAdd(10)">
+   <input type="button" value="updateUserInfo"  @click="updateUserInfo">
+   <input type="button" value="action调用"  @click="updateUserInfoAction">
      
     <h1>--------子计数----------</h1>
     <Counter :count="this.$store.state.counter"/>
+
+     <h1>------------------</h1>
+      {{$store.getters.allPersons}}
+       <h1>------------------</h1>
+      {{$store.getters.more20Person}}
+       <h1>------------------</h1>
+      {{$store.getters.moreAgePerson(26)}}
+        <h1>------------------</h1>
+      {{$store.getters.getUserInfo}}
   </div>
 </template>
 
 <script>
 import Counter from './components/Counter.vue'
 import store from './store/index.js'
+import {INCREMENT,DECREMENT} from './store/mutations-types'
+
 export default {
   name: 'App',
   store,
@@ -27,10 +42,32 @@ export default {
   },
   methods: {
     decrement(){
-      this.$store.commit("decrement")
+      // this.$store.commit("decrement")  // 魔法字符串最好不要有 ，使用常量 
+            this.$store.commit(DECREMENT)  // 使用常量 
     },
     increment(){
-          this.$store.commit("increment")
+          // this.$store.commit("increment")
+          this.$store.commit(INCREMENT)
+    },
+    counterAdd(count){
+      // 直接传参数
+      this.$store.commit('counterAdd',count);
+      // 传对象
+      setTimeout(()=>{
+        this.$store.commit({type:'counterAddO',count});
+      },2000)
+    },
+    updateUserInfo(){
+      this.$store.commit('updateUserInfo');
+    },
+    updateUserInfoAction(){
+      // action 调用
+      this.$store.dispatch("updateUserInfoAction",{remark:'这是携带的备注信息',success:()=>{
+   
+             console.log("成功后的执行方法")        
+      }}).then(res=>{
+        console.log(res);
+      })
     }
   },
 }
