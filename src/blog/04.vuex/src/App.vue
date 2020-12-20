@@ -21,6 +21,15 @@
       {{$store.getters.moreAgePerson(26)}}
         <h1>------------------</h1>
       {{$store.getters.getUserInfo}}
+
+ <h1>--------模块 modules----------</h1>
+  {{$store.state.a.users}}  <br/>
+  {{$store.getters.getUser}}
+  <br/>
+   <input type="button" value="updateUser"  @click="updateUser">
+   <input type="button" value="action调用"  @click="updateUserAction">
+
+
   </div>
 </template>
 
@@ -68,7 +77,14 @@ export default {
       }}).then(res=>{
         console.log(res);
       })
+    },
+    updateUser(){
+      this.$store.commit('add');
+    },
+    updateUserAction(){
+      this.$store.dispatch('update') ;
     }
+
   },
 }
 </script>

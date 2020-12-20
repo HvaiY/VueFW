@@ -5,6 +5,45 @@ import {
     DECREMENT
 } from './mutations-types'
 
+const moduleA = {
+    state: {
+        users: [{
+            code: 'a001',
+            name: '小a'
+        }]
+    },
+    mutations: {
+        add(state) {
+            state.users.push({
+                name: '小卜',
+                code: 'b001'
+            });
+        }
+    },
+    getters: {
+        getUser(state) {
+            return state.users;
+        }
+    },
+    actions: {
+        update(context) {
+            console.log(context)
+            // 可以访问根store
+            console.log(context.rootGetters.allPersons)
+            setTimeout(() => {
+                context.commit('add');
+            }, 1000)
+        }
+    }
+}
+
+const moduleB = {
+    state: {},
+    mutation: {},
+    getters: {},
+    actions: {}
+}
+
 Vue.use(Vuex);
 // state：存储状态。也就是变量；
 // getters：派生状态。也就是set、get中的get，有两个可选参数：state、getters分别可以获取state中的变量和其他的getters。外部调用方式：store.getters.personInfo()。就和vue的computed差不多；
@@ -73,6 +112,9 @@ const Store = new Vuex.Store({
         updateUserInfoActionM(state, remark) {
             console.log(remark)
             Vue.set(state.userInfo, 'remark', remark);
+        },
+        add(state) {
+            Vue.set(state.userInfo, 'test', "测试的一个内容分，方法名称与moduleA一样，那么两个方法一同存在");
         }
     },
     getters: {
@@ -109,6 +151,9 @@ const Store = new Vuex.Store({
     modules: {
 
         //这里是我自己理解的是为了给全局变量分组，所以需要写提前声明其他store文件，然后引入这里
+        // 模块中 的除state 之外全部合并到夫store 里面了 所有 mutations getters actions 全部一样了、可以调用
+        a: moduleA,
+        moduleB
 
     }
 
